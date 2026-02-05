@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="he">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wedding Invitation - Prototype</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Heebo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="scene">
+    <!-- Simple stylized trees background -->
+    <svg class="background" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#dff6ff"/>
+          <stop offset="1" stop-color="#e8f7ea"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="400" fill="url(#sky)"/>
+      <!-- simple layered trees -->
+      <g fill="#2d6a3a" opacity="0.95">
+        <ellipse cx="150" cy="320" rx="220" ry="90"></ellipse>
+        <ellipse cx="950" cy="320" rx="200" ry="85"></ellipse>
+      </g>
+      <g fill="#174a2b" opacity="0.75">
+        <polygon points="1200,400 1000,120 900,400"></polygon>
+        <polygon points="0,400 200,80 350,400"></polygon>
+      </g>
+    </svg>
+
+    <div class="envelope" id="envelope" tabindex="0" aria-label="Envelope. Click to open.">
+      <div class="flap" id="flap"></div>
+      <div class="card" id="card">
+        <div class="card-inner" id="cardInner">
+          <!-- Two faces: front = Hebrew, back = English -->
+          <div class="face front" id="hebrewFace" dir="rtl" lang="he">
+            <h1>הזמנה לחתונה</h1>
+            <p class="names">מורן & דנינו</p>
+            <p class="details">נשמח לראותכם ביום השמחה: <br> 20.6.2026, בשעה 18:00<br>גן האירועים הירוק</p>
+            <div class="controls">
+              <button id="flipBtn" aria-label="הצג באנגלית">English</button>
+              <button id="downloadBtn" aria-label="הורד הזמנה">הורד</button>
+            </div>
+          </div>
+
+          <div class="face back" id="englishFace" dir="ltr" lang="en" aria-hidden="true">
+            <h1>Wedding Invitation</h1>
+            <p class="names">Moran & Danino</p>
+            <p class="details">Please join us for our celebration:<br>June 20, 2026 at 6:00 PM<br>The Green Garden Venue</p>
+            <div class="controls">
+              <button id="flipBtnEn" aria-label="Show in Hebrew">עברית</button>
+              <button id="downloadBtnEn" aria-label="Download invitation">Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="hint">לחצו על המעטפה לפתיחה • Click the envelope to open</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

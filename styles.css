@@ -1,0 +1,58 @@
+:root{
+  --bg:#f0fff7;
+  --envelope:#fff7ef;
+  --flap:#f2d7c9;
+  --card-bg: #fff;
+  --accent: #2d6a3a;
+  font-family: 'Alef', 'Heebo', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+body,html{height:100%; margin:0; background:linear-gradient(#dff6ff,#e8f7ea); display:flex; align-items:center; justify-content:center; font-size:16px; color:#102018}
+
+.scene{width:100%; max-width:900px; padding:40px; position:relative; text-align:center}
+.background{position:absolute; left:0; right:0; top:0; height:40%; max-height:220px; width:100%; z-index:0; pointer-events:none;}
+
+/* Envelope container */
+.envelope{
+  width:360px; height:240px; margin:40px auto; position:relative; perspective:1200px; z-index:2; cursor:pointer;
+}
+.flap{
+  position:absolute; top:0; left:0; right:0; height:120px; background:linear-gradient(180deg,var(--flap), #f9e4d8); border-radius:6px 6px 0 0; transform-origin:top center; transform:rotateX(0deg); transition: transform 700ms cubic-bezier(.2,.9,.3,1);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+.card{
+  position:absolute; left:10px; right:10px; top:40px; bottom:10px; background:var(--card-bg); border-radius:8px; box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  transform-style: preserve-3d;
+  transition: transform 700ms ease;
+  overflow:hidden;
+}
+.card-inner{width:100%; height:100%; position:relative; transform-style:preserve-3d; transition: transform 700ms ease}
+.face{
+  position:absolute; inset:0; padding:20px; display:flex; flex-direction:column; gap:8px; justify-content:center; align-items:center; backface-visibility:hidden; text-align:center;
+}
+.face h1{margin:0;font-size:1.5rem;color:var(--accent)}
+.names{font-weight:700;font-size:1.2rem;color:#0b3d25}
+.details{font-size:0.95rem;color:#234634}
+.controls{margin-top:8px; display:flex; gap:8px}
+.controls button{background:var(--accent); color:white; border:0; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:0.9rem}
+.controls button:focus{outline:3px solid rgba(45,106,58,0.25)}
+.back{transform:rotateY(180deg);}
+
+/* states */
+.envelope.open .flap{transform:rotateX(-180deg)}
+.envelope.open .card{transform:translateY(-10px)}
+.envelope.open .card-inner{transform:rotateY(0deg)} /* keep default */
+
+.card-inner.flipped{transform:rotateY(180deg)}
+.card-inner.flipped .front{aria-hidden:true}
+.card-inner.flipped .back{aria-hidden:false}
+
+/* small hint */
+.hint{font-size:0.9rem; color:#0b3d25; opacity:0.9; margin-top:10px}
+
+/* responsive */
+@media (max-width:420px){
+  .envelope{width:300px; height:200px}
+  .flap{height:100px}
+}
